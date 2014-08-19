@@ -3,7 +3,6 @@
 #include <stdexcept>
 #include <sstream>
 #include <cctype>
-#include <stack>
 
 // Check if char c is a operator
 bool 
