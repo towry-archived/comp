@@ -1,0 +1,8 @@
+*.o
+*/*.o
+*.out
+*/*.out
+*.exe
+*/*.exe
+*.obj
+*/*.obj
