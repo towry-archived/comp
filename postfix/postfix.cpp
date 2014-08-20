@@ -28,7 +28,6 @@ precedence(char a, char b) {
         if (b == '*' || b == '/') {
             return false;
         }
-        return true;
     }
     return true;
 }
@@ -82,6 +81,10 @@ postfix(std::string& infix) {
                 pf.push_back(stack.top());
                 stack.pop();
             }
+            if (stack.empty()) {
+                throw std::runtime_error("missing paren");
+            }
+            stack.pop();
         }
 
         else {
@@ -93,6 +96,15 @@ postfix(std::string& infix) {
 
     while (!stack.empty() &&
             '(' != stack.top()) {
+        pf.push_back(stack.top());
+        stack.pop();
+    }
+    if (stack.empty()) {
+        throw std::runtime_error("missing paren");
+    }
+    stack.pop();
+
+    while (!stack.empty()) {
         pf.push_back(stack.top());
         stack.pop();
     }
