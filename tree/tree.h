@@ -35,7 +35,7 @@ TreeNode<T>::TreeNode(const T& v)
 }
 
 // tree
-template <typename T, class _alloc = std::allocator<TreeNode<T>>>
+template <typename T, class tree_alloc = std::allocator<TreeNode<T>>>
 class Tree {
  private:
     typedef TreeNode<T> TreeNode;
@@ -45,27 +45,34 @@ class Tree {
     ~Tree();
 
     // ops
-    void insert(T& data){}
-    void search(T& data){}
-    void remove(T& data){}
+    void insert(const T& data);
+    void search(const T& data);
+    void remove(const T& data);
 
  private:
     TreeNode *root;
+    tree_alloc _alloc;
 };
 
-template <typename T, class _alloc>
-Tree<T, _alloc>::Tree() {
+template <typename T, class tree_alloc>
+Tree<T, tree_alloc>::Tree() {
     root = _alloc.allocate(1,0);
-    root.parent = 0;
-    root.first_child = 0;
-    root.last_child = 0;
-    root.prev_sibling = 0;
-    root.next_sibling = 0;
+    root->parent = 0;
+    root->first_child = 0;
+    root->last_child = 0;
+    root->prev_sibling = 0;
+    root->next_sibling = 0;
 }
 
-template <typename T, class _alloc>
-Tree<T, _alloc>::~Tree() {
+template <typename T, class tree_alloc>
+Tree<T, tree_alloc>::~Tree() {
     _alloc.destory(head);
     _alloc.deallocate(head,1);
+}
+
+template <typename T, class tree_alloc>
+Tree<T, tree_alloc>::insert(const T& data) {
+    TreeNode<T>* node = new TreeNode<T>(data);
+    TreeNode<T>* tmp;
 }
 
